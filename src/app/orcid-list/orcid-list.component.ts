@@ -46,5 +46,13 @@ export class OrcidListComponent implements OnInit {
       })
   }
 
+  goToPage(link: string)
+  {
+    this.orcidService.getPage(link)
+      .subscribe(data => {
+        console.dir(data)
+      });
+  }
+
   get orcid() { return this.orcidForm.controls.orcid }
 }

@@ -45,7 +45,11 @@
 <div class="flex justify-end">
     <span class="p-buttonset" *ngIf="listOrcid">
         <ng-container *ngFor="let link of listOrcid.meta.links">
-            <button pButton pRipple label="Save" [label]="link.label"></button>
+            <button pButton pRipple label="Save"
+              [label]="link.label" 
+              [disabled]="link.url != null ? '' : true"
+              (click)="goToPage(link.url ?? '')" 
+            ></button>
         </ng-container>
     </span>
 </div>

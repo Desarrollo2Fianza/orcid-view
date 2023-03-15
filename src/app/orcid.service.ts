@@ -38,6 +38,14 @@ export class OrcidService {
       );
   }
 
+  getPage(link: string)
+  {
+    return this.http.get<any>(link)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
   public handleError(error: HttpErrorResponse)
   {
     if (error.status === 0)
