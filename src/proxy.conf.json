@@ -1,0 +1,6 @@
+{
+    "/api": {
+      "target": "http://172.16.10.193/metabiblioteca_zea/public",
+      "secure": false
+    }
+  }
