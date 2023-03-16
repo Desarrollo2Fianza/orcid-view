@@ -5,13 +5,15 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
+import { environment } from 'src/environments/environment.development';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OrcidService {
 
-  private prefix = 'http://127.0.0.1/metabiblioteca_zea/public/api/orcid';
+  // private prefix = 'http://127.0.0.1/metabiblioteca_zea/public/api/orcid';
+  private prefix = environment.base;
 
   constructor(
     private http: HttpClient,
