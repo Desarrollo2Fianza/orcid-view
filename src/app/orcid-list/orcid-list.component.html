@@ -1,3 +1,12 @@
+<p-toast></p-toast>
+
+<p-confirmDialog 
+  [style]="{width: '50vw'}" 
+  [baseZIndex]="10000" 
+  rejectButtonStyleClass="p-button-outlined"
+  rejectLabel="No"
+></p-confirmDialog>
+
 <form class="flex justify-center" [formGroup]="orcidForm" (ngSubmit)="onSubmit()">
     <div class="md:w-3/4 lg:w-3/4 xl:w-2/4">
         <div class="grid grid-cols-12">
@@ -22,7 +31,8 @@
 
 <div class="flex justify-center my-4">
     <div class="w-3/4" *ngIf="listOrcid">
-        <p-table [value]="listOrcid.data"
+        <p-table 
+          [value]="listOrcid.data"
           styleClass="border border-gray-300 p-datatable-gridlines p-datatable-striped"
           responsiveLayout="stack" [breakpoint]="'960px'"
         >
@@ -51,7 +61,7 @@
                             <button pButton pRipple type="button" 
                               label="Delete" 
                               class="p-button-danger p-button-sm"
-                              (click)="deleteOrcid(orcid.orcid)"
+                              (click)="confirmDelete(orcid.orcid)"
                             ></button>
                         </span>
                     </td>
@@ -61,11 +71,12 @@
         
         <div class="flex justify-end mt-3">
             <span class="p-buttonset" *ngIf="listOrcid">
-                <ng-container *ngFor="let link of listOrcid.meta.links">
+                <ng-container *ngFor="let link of listOrcid.meta.links; let i=index">
                     <button pButton pRipple #button
                       [disabled]="(link.url != null && !link.active) ? '' : true"
                       (click)="goToPage(link.url ?? '')"
-                      [label]="link.label"
+                      [label]="makeLabel(i)"
+                      class="border border-gray-200 p-button-secondary"
                     ></button>
                 </ng-container>
             </span>

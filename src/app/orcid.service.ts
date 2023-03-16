@@ -41,8 +41,6 @@ export class OrcidService {
   {
     let url = `${this.prefix}/create/${orcid}`;
 
-    console.log(url)
-
     return this.http.post<any>(url, [''])
       .pipe(
         catchError(this.handleError)

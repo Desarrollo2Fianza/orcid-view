@@ -5,6 +5,7 @@ import { OrcidDetailComponent } from './orcid-detail/orcid-detail.component';
 
 const routes: Routes = [
   { path: 'orcid-detail/:id', component: OrcidDetailComponent },
+  { path: 'orcid-list', component: OrcidListComponent },
   { path: '**', component: OrcidListComponent, pathMatch: 'full' }
 ];
 

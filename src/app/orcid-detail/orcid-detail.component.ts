@@ -10,6 +10,8 @@ import { OrcidService } from '../orcid.service';
 })
 export class OrcidDetailComponent {
   orcidDetails: any;
+  orcidExists = false;
+  message: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -27,7 +29,15 @@ export class OrcidDetailComponent {
 
     this.orcidService.getOrcid(id!)
       .subscribe((response) => {
-        console.log(response);
+        if (this.existsOrcid(response,'data'))
+          this.orcidDetails = response.data;
+        else
+          this.message = response.message;
       })
+  }
+
+  existsOrcid(object: any, property: string)
+  {
+    return this.orcidExists = object.hasOwnProperty(property);
   }
 }

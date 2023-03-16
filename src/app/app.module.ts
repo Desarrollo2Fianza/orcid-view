@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 
 import { HttpClientModule } from '@angular/common/http';
@@ -14,6 +15,13 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { PaginatorModule } from 'primeng/paginator';
 import { TableModule } from 'primeng/table';
+import { ToastModule } from 'primeng/toast';
+import { MessagesModule } from 'primeng/messages';
+import { MessageModule } from 'primeng/message';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { CardModule } from 'primeng/card';
+import { DividerModule } from 'primeng/divider';
+
 
 @NgModule({
   declarations: [
@@ -23,6 +31,7 @@ import { TableModule } from 'primeng/table';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
@@ -31,6 +40,12 @@ import { TableModule } from 'primeng/table';
     ButtonModule,
     PaginatorModule,
     TableModule,
+    ToastModule,
+    MessagesModule,
+    MessageModule,
+    ConfirmDialogModule,
+    CardModule,
+    DividerModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
