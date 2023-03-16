@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { FormBuilder, Validators } from '@angular/forms';
 
+import { Router } from '@angular/router';
+
 import { OrcidService } from '../orcid.service';
 
 @Component({
@@ -19,6 +21,7 @@ export class OrcidListComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private orcidService: OrcidService,
+    private router: Router
   ) { }
 
   ngOnInit(): void 
@@ -35,22 +38,39 @@ export class OrcidListComponent implements OnInit {
   {
     if (!(this.orcidForm.valid))
       return;
-      
-    console.dir(this.orcidForm.controls.orcid.value);
 
     this.orcidService.createOrcid(this.orcidForm.controls.orcid.value)
       .subscribe((data) => {
         console.dir(data);
 
+        // this.orcidForm.controls.orcid.setValue('');
+        this.orcidForm.reset();
         this.ngOnInit();
       })
+  }
+
+  orcidDetails(id: string)
+  {
+    this.router.navigate(['/orcid-detail', id]);
+  }
+
+  deleteOrcid(id: string)
+  {
+    this.orcidService.deleteOrcid(id)
+      .subscribe((response) =>{
+        console.dir(response);
+
+        this.ngOnInit();
+      });
   }
 
   goToPage(link: string)
   {
     this.orcidService.getPage(link)
       .subscribe(data => {
-        console.dir(data)
+        this.listOrcid = data;
+
+        console.dir(data);
       });
   }
 

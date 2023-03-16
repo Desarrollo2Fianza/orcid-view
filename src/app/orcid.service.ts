@@ -11,8 +11,7 @@ import { catchError } from 'rxjs/operators';
 })
 export class OrcidService {
 
-  private prefix = 'http://172.16.10.193/metabiblioteca_zea/public/api/orcid';
-  // private prefix = '/api/orcid';
+  private prefix = 'http://127.0.0.1/metabiblioteca_zea/public/api/orcid';
 
   constructor(
     private http: HttpClient,
@@ -28,11 +27,33 @@ export class OrcidService {
       );
   }
 
+  getOrcid(id: string)
+  {
+    let url = `${this.prefix}/${id}`;
+
+    return this.http.get<any>(url)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
   createOrcid(orcid: any)
   {
     let url = `${this.prefix}/create/${orcid}`;
 
+    console.log(url)
+
     return this.http.post<any>(url, [''])
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+  deleteOrcid(id: string)
+  {
+    let url = `${this.prefix}/delete/${id}`;
+
+    return this.http.delete<any>(url)
       .pipe(
         catchError(this.handleError)
       );
