@@ -10,7 +10,11 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  /**
+   * It's necessary to deploy the project in production
+   * and obtain the assets and the index.html
+   */
+  imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
